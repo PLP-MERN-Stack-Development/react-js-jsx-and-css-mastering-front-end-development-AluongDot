@@ -1,7 +1,7 @@
 // src/lib/api.js
-const API_URL = import.meta.env.VITE_API_URL || "https://wk-backend.onrender.com/";
+const API_URL = import.meta.env.VITE_API_URL || "https://wk-backend.onrender.com/api/tasks";
 
-// ✅ Get all tasks
+// Get all tasks
 export const getTasks = async () => {
   try {
     const response = await fetch(API_URL);
@@ -15,7 +15,7 @@ export const getTasks = async () => {
   }
 };
 
-// ✅ Create a new task
+// Create a new task
 export const createTask = async (taskData) => {
   try {
     const response = await fetch(API_URL, {
@@ -33,7 +33,7 @@ export const createTask = async (taskData) => {
   }
 };
 
-// ✅ Update a task
+// Update a task
 export const updateTask = async (id, updatedFields) => {
   try {
     const response = await fetch(`${API_URL}/${id}`, {
@@ -51,7 +51,7 @@ export const updateTask = async (id, updatedFields) => {
   }
 };
 
-// ✅ Delete a task
+// Delete a task
 export const deleteTask = async (id) => {
   try {
     const response = await fetch(`${API_URL}/${id}`, { method: "DELETE" });
@@ -60,7 +60,7 @@ export const deleteTask = async (id) => {
     console.log("✅ Task deleted:", result);
     return result;
   } catch (err) {
-    console.error(" Error deleting task:", err);
+    console.error("❌ Error deleting task:", err);
     throw err;
   }
 };
