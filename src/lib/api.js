@@ -1,7 +1,13 @@
 // src/lib/api.js
-const API_URL = import.meta.env.VITE_API_URL || "https://wk-backend.onrender.com/api/tasks";
 
-// Get all tasks
+// ✅ Automatically switch between dev and production backend
+const API_URL =
+  import.meta.env.VITE_API_URL ||
+  (import.meta.env.MODE === "development"
+    ? "http://localhost:5000/api/tasks" // local backend
+    : "https://wk-backend.onrender.com/api/tasks"); // deployed backend
+
+// ✅ Get all tasks
 export const getTasks = async () => {
   try {
     const response = await fetch(API_URL);
@@ -15,7 +21,7 @@ export const getTasks = async () => {
   }
 };
 
-// Create a new task
+// ✅ Create a new task
 export const createTask = async (taskData) => {
   try {
     const response = await fetch(API_URL, {
@@ -33,7 +39,7 @@ export const createTask = async (taskData) => {
   }
 };
 
-// Update a task
+// ✅ Update a task
 export const updateTask = async (id, updatedFields) => {
   try {
     const response = await fetch(`${API_URL}/${id}`, {
@@ -51,7 +57,7 @@ export const updateTask = async (id, updatedFields) => {
   }
 };
 
-// Delete a task
+// ✅ Delete a task
 export const deleteTask = async (id) => {
   try {
     const response = await fetch(`${API_URL}/${id}`, { method: "DELETE" });
